@@ -1,4 +1,4 @@
-﻿
+
 #   Api Docs(Chinese simplified document)
 
 ## 1. open-api Catalog (example：cmc.imoex.top/api/*)
@@ -21,9 +21,39 @@
 
 Return value:
 
-|field|	Example|	explain|
-|--------|--------|--------|
-|data|	{"comm": { "name": "comm", "unified_cryptoasset_id": null, "can_withdraw": true, "can_deposit": true, "min_withdraw": "40.000", "max_withdraw": "416667.000", "maker_fee": "0.001", "taker_fee": "0.001" }, "BCH": { "name": "Bitcoin Cash", "unified_cryptoasset_id": 1831, "can_withdraw": true, "can_deposit": true, "min_withdraw": "0.018", "max_withdraw": "600.000", "maker_fee": "0.002", "taker_fee": "0.002" }}|name：Full name of cryptocurrency <br> unified_cryptoasset_id：Unique ID of cryptocurrency assigned by Unifified Cryptoasset ID<br>can_withdraw：Identififies whether withdrawals are enabled or disabled<br>can_deposit：Identififies whether deposits are enabled or disabled<br>min_withdraw：Identififies the single minimum withdraw amount of a cryptocurrency<br>max_withdraw：Identififies the single maximum withdraw amount of a cryptocurrency<br>maker_fee：Fees applied when liquidity is added to the order book<br>taker_fee：Fees applied when liquidity is removed from the order book|
+    {
+    	"comm": {
+    		"name": "comm",
+    		"unified_cryptoasset_id": null,
+    		"can_withdraw": true,
+    		"can_deposit": true,
+    		"min_withdraw": "40.000",
+    		"max_withdraw": "416667.000",
+    		"maker_fee": "0.001",
+    		"taker_fee": "0.001"
+    	},
+    	"BCH": {
+    		"name": "Bitcoin Cash",
+    		"unified_cryptoasset_id": 1831,
+    		"can_withdraw": true,
+    		"can_deposit": true,
+    		"min_withdraw": "0.018",
+    		"max_withdraw": "600.000",
+    		"maker_fee": "0.002",
+    		"taker_fee": "0.002"
+    	}
+    }
+
+Explain：
+**name**：Full name of cryptocurrency<br>
+**unified_cryptoasset_id**：Unique ID of cryptocurrency assigned by Unifified Cryptoasset ID<br>
+**can_withdraw**：Identififies whether withdrawals are enabled or disabled<br>
+**can_deposit**：Identififies whether deposits are enabled or disabled<br>
+**min_withdraw**：Identififies the single minimum withdraw amount of a cryptocurrency<br>
+**max_withdraw**：Identififies the single maximum withdraw amount of a cryptocurrency<br>
+**maker_fee**：Fees applied when liquidity is added to the order book<br>
+**taker_fee**：Fees applied when liquidity is removed from the order book<br>
+
 ---
 ### <span id="2">Ticker of market pair</span>
 
@@ -38,10 +68,32 @@ Return value:
 
 Return value:
 
+    {
+    	"btcusdt": {
+    		"name": "btcusdt",
+    		"base_id": "1",
+    		"quote_id": "825",
+    		"last_price": "5003.971400",
+    		"base_volume": "145752517.103805",
+    		"quote_volume": "30034.375379"
+    	},
+    	"xrgusdm": {
+    		"name": "xrgusdm",
+    		"base_id": "",
+    		"quote_id": "",
+    		"last_price": "0.556900",
+    		"base_volume": "702605.831685",
+    		"quote_volume": "1267723.079304"
+    	}
+    }
 
-|field|	Example|	explain|
-|--------|--------|--------|
-|data|	{ "btcusdt": { "name": "btcusdt", "base_id": "1", "quote_id": "825", "last_price": "5003.971400", "base_volume": "145752517.103805", "quote_volume": "30034.375379" }, "xrgusdm": { "name": "xrgusdm", "base_id": "", "quote_id": "", "last_price": "0.556900", "base_volume": "702605.831685", "quote_volume": "1267723.079304" }}|name：Full name of cryptocurrency <br> base_id：The quote pair Unifified Cryptoasset ID<br>quote_id：The base pair Unifified Cryptoasset ID<br>last_price：The price of the last executed order<br>base_volume：24 hour trading volume in base pair volume<br>quote_volume：24 hour trading volume in quote pair volume|
+Explain：
+**name**：Full name of cryptocurrency <br>
+**base_id**：The quote pair Unifified Cryptoasset ID<br>
+**quote_id**：The base pair Unifified Cryptoasset ID<br>
+**last_price**：The price of the last executed order<br>
+**base_volume**：24 hour trading volume in base pair volume<br>
+**quote_volume**：24 hour trading volume in quote pair volume<br>
 
 ---
 ### <span id="3">Order book of market pair</span>
@@ -55,10 +107,20 @@ Return value:
 
 Return value:
 
+    {
+    	"asks": [
+    		[9400, 0.0971]
+    	],
+    	"bids": [
+    		[5021.7492, 0.1362]
+    	],
+    	"timestamp": "1584341474"
+    }
 
-|field|	Example|	explain|
-|--------|--------|--------|
-|data|	{"asks": [[9400,0.0971]],"bids": [[5021.7492,0.1362]],"timestamp": "1584341474"}|timestamp：Unix timestamp in milliseconds for when the last updated time occurred<br> bids：An array containing 2 elements. The offer price and quantity for each bid order<br>asks：An array containing 2 elements. The ask price and quantity for each ask order|
+Explain：
+**timestamp**：Unix timestamp in milliseconds for when the last updated time occurred<br>
+**bids**：An array containing 2 elements. The offer price and quantity for each bid order<br>
+**asks**：An array containing 2 elements. The ask price and quantity for each ask order<br>
 
 ---
 ###  <span id="4">Trades of market pair</span>
@@ -73,7 +135,26 @@ Return value:
 
 Return value:
 
-|field|	Example|	explain|
-|--------|--------|--------|
-|data|	[ { "price": "5016.182200", "type": "sell", "trade_id": "21211432", "base_volume": "2161.974528", "quote_volume": "0.431000", "trade_timestamp": "1584341940" }, { "price": "5016.293800", "type": "sell", "trade_id": "21211431", "base_volume": "4225.224267", "quote_volume": "0.842300", "trade_timestamp": "1584341940" }]|trade_id：A unique ID associated with the trade for the currency pair transaction Note: Unix timestamp does not qualify as trade_id <br>price：Transaction price in base pair volume<br>base_volume：Transaction amount in base pair volume<br>quote_volume：Transaction amount in quote pair volume<br>trade_timestamp：Unix timestamp in milliseconds for when the transaction occurred<br>type：Used to determine whether or not the transaction originated as a buy or sell.Buy – Identififies an ask was removed from the order book. Sell –Identififies a bid was removed from the order book|
+    [{
+    	"price": "5016.182200",
+    	"type": "sell",
+    	"trade_id": "21211432",
+    	"base_volume": "2161.974528",
+    	"quote_volume": "0.431000",
+    	"trade_timestamp": "1584341940"
+    }, {
+    	"price": "5016.293800",
+    	"type": "sell",
+    	"trade_id": "21211431",
+    	"base_volume": "4225.224267",
+    	"quote_volume": "0.842300",
+    	"trade_timestamp": "1584341940"
+    }]
 
+Explain：
+**trade_id**：A unique ID associated with the trade for the currency pair transaction Note: Unix timestamp does not qualify as trade_id <br>
+**price**：Transaction price in base pair volume<br>
+**base_volume**：Transaction amount in base pair volume<br>
+**quote_volume**：Transaction amount in quote pair volume<br>
+**trade_timestamp**：Unix timestamp in milliseconds for when the transaction occurred<br>
+**type**：Used to determine whether or not the transaction originated as a buy or sell.Buy – Identififies an ask was removed from the order book. Sell –Identififies a bid was removed from the order book<br>
